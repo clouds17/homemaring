@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/admin/modifyAdmin" method="post" enctype="multipart/form-data">
+        <input type="text" name="username" id="username">
+        <input type="text" name="password" id="password">
+        <input type="text" name="email" id="email">
+        <input type="text" name="mobile" id="mobile">
+        <select name="adress" id="adress">
+            <option value="363000">漳州</option>
+            <option value="361000">厦门</option>
+            <option value="350000">福州</option>
+        </select>
+        <select name="role" id="role">
+            <option value="1">经理</option>
+            <option value="2">主管</option>
+            <option value="3">组长</option>
+        </select>
+        <input type="radio" name="state" value="0" checked> 禁用
+        <input type="radio" name="state" value="1" > 启用
+        <label for="">
+            <input type="file" name="avator" id="inp">
+            <img src="http://127.0.0.1:3000\adminUpload\upload_d8206b3af917432382fd425088036a69.jpg" alt="" id='pic'>
+        </label>
+        <input type="submit" name="" id="btn" value="fasong">
+    </form>
+
+        <script>
+            let xhr = new XMLHttpRequest()
+            xhr.open('get', 'http://localhost:3000/admin/oneAdmin/5fddcced97b7704bbcbe8766')
+            xhr.onload = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    let data = JSON.parse(this.responseText)
+                    console.log(data)
+                    document.getElementById('username').value = data.data.username
+                    document.getElementById('password').value = data.data.password
+                    document.getElementById('email').value = data.data.email
+                    document.getElementById('mobile').value = data.data.mobile
+                    document.getElementById('adress').value = data.data.adress
+                    document.getElementById('role').value = data.data.role
+                    console.log(document.getElementById('inp').files)
+                    // document.getElementById('pic').src = data.data.pic
+                } 
+            }
+            xhr.send()
+        </script>
+</body>
+</html>

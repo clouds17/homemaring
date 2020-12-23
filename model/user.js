@@ -28,26 +28,9 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    /*  
-     *  Role
-     * 普通用户： 0
-     * 管理员： 1
-     * 保姆： 2 
-     */
-    role: {
-        type: Number,
-        required: true
-    },
-    /* 
-    *   Status:
-    *   住家保姆 : 01
-    *   月嫂 : 02
-    *   临时工 : 03
-    *   护工 : 04
-    *   育儿嫂 : 05
-    * */
-    status: Number,
-    avatar: String
+    avator: String,
+    registerDate: Date
+    
 })
 
 const User = mongoose.model('User', userSchema)

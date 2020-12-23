@@ -6,9 +6,9 @@ const orderSchema = new mongoose.Schema({
         ref: 'User'
     },
     // 预约保姆的ID
-    yid: {
+    bid: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Babysitter'
     },
     // 价格
     price: Number,

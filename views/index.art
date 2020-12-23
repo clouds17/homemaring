@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/admin/register" method="post" enctype="multipart/form-data">
+    <form action="/home/register" method="post" enctype="multipart/form-data">
         <input type="text" name="username" id="">
         <input type="text" name="password" id="">
         <input type="text" name="email" id="email">
@@ -16,7 +16,7 @@
             <option value="361000">厦门</option>
             <option value="350000">福州</option>
         </select>
-        <input type="file" name="avatar">
+        <input type="file" name="avator">
         <input type="submit" name="" id="" value="fasong">
     </form>
     <script>
@@ -24,7 +24,7 @@
         emailInp.onblur = function() {
             // console.log(this.value.trim())
             let xhr = new XMLHttpRequest()
-            xhr.open('get', '/admin/checkregister/'+this.value.trim())
+            xhr.open('get', '/home/checkregister/'+this.value.trim())
             xhr.onload = function() {
                 if (this.readyState !== 4 && this.status !== 200) {
                     return

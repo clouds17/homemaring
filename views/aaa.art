@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/admin/addUser" method="post" enctype="multipart/form-data">
+        <input type="text" name="username" id="">
+        <input type="text" name="password" id="">
+        <input type="text" name="email" id="">
+        <input type="text" name="mobile" id="">
+        <select name="adress" id="">
+            <option value="363000">漳州</option>
+            <option value="361000">厦门</option>
+            <option value="350000">福州</option>
+        </select>
+        <select name="role" id="">
+            <option value="1">经理</option>
+            <option value="2">主管</option>
+            <option value="3">组长</option>
+        </select>
+        <input type="radio" name="state" value="0"> 禁用
+        <input type="radio" name="state" value="1"> 启用
+        <input type="file" name="avator">
+        <input type="submit" name="" id="" value="fasong">
+    </form>
+</body>
+</html>
