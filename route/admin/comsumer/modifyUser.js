@@ -1,5 +1,5 @@
 const { User } = require('../../../model/user')
-const { baseURL } = require('../../../config/baseurl')
+const { baseUrl } = require('../../../config/baseUrl')
 
 module.exports = async (req, res) => {
     const { id } = req.params

@@ -14,11 +14,16 @@ module.exports = async (req, res) => {
             role: parseInt(req.body.role)
         }
     } else {
-        modifyData = req.body
+        modifyData = {
+            username: req.body.username,
+            email: req.body.email,
+            mobile: parseInt(req.body.mobile),
+            role: parseInt(req.body.role),
+            avator: req.body.avator
+        }
     }
     const adminData = await Admin.updateOne({_id: id}, modifyData)
         if (adminData) {
-            modifyData.password = ''
             modifyData.avator = baseUrl + modifyData.avator
             return res.json({
                 'data': modifyData,

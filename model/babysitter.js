@@ -21,7 +21,7 @@ const babysitterSchema = new mongoose.Schema({
      * 厦门编码： 361000
      * 福州编码： 350000 
      */
-    address: Number,
+    adress: Number,
     /**
      * role
      * 住家保姆：1
@@ -41,7 +41,7 @@ const babysitterSchema = new mongoose.Schema({
     // 一次的价格
     price: Number,
     // 入职时间
-    entryTime: Date.now(),
+    entryTime: Date,
     age: Number
 })
 

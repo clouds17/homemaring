@@ -27,10 +27,34 @@ admin.delete('/deleteAdmin/:id', passport.authenticate('jwt', { session: false }
 
 // 查询所以普通用户
 admin.get('/allUser/:adress', passport.authenticate('jwt', { session: false }), require('./admin/comsumer/allUser'))
+
 // 修改普通用户
 admin.put('/modifyUser/:id', passport.authenticate('jwt', { session: false }), require('./admin/comsumer/modifyUser'))
+
 // 删除普通用户
 admin.delete('/deleteUser/:id', passport.authenticate('jwt', { session: false }), require('./admin/comsumer/deleteUser'))
+
+// 添加保姆
+admin.post('/addBabySitter', passport.authenticate('jwt', { session: false }), require('./admin/baby-sitter/addBabySitter'))
+
+// 获取所以保姆信息
+admin.get('/allBabySitter/:adress', passport.authenticate('jwt', { session: false }), require('./admin/baby-sitter/allBabySitter'))
+
+// 修改保姆信息
+admin.put('/modifyBabySitter/:id', passport.authenticate('jwt', { session: false }), require('./admin/baby-sitter/modifyBabySitter'))
+
+// 删除保姆信息
+admin.delete('/deleteBabySitter/:id', passport.authenticate('jwt', { session: false }), require('./admin/baby-sitter/deleteBabySitter'))
+
+
+
+
+
+
+
+
+
+
 // 测试
 admin.get('/ceshi', require('./admin/ceshi'))
 
