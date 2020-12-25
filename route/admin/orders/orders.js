@@ -2,7 +2,7 @@ const e = require('express')
 const { Order } = require('../../../model/order')
 module.exports = async (req, res) => {
     const { adress } = req.params
-    const { query, pagesize, pagenum } = req.query
+    let { query, pagesize, pagenum, state } = req.query
     if (!pagenum || pagenum <= 0) {
         return res.json({
             'data': null,
@@ -21,7 +21,14 @@ module.exports = async (req, res) => {
             }
         })
     }
-    await Order.countDocuments({adress: adress}, async (err, count) => {
+    let condition = {}
+    if (state) {
+        condition = { adress: adress, state: parseInt(state) }
+        pagenum = 1
+    } else {
+        condition = { adress: adress }
+    }
+    await Order.countDocuments(condition, async (err, count) => {
         if (err) {
             return res.json({
                 'data': null,
@@ -34,9 +41,12 @@ module.exports = async (req, res) => {
             let orderData
             if (query !== '') {
                 orderData = await Order.find({_id: query}).populate(['uid', 'bid'])
+            } else if (state !== '') {
+                orderData = await Order.find({state: parseInt(state)}).skip((pagenum-1)*pagesize).limit(parseInt(pagesize)).populate(['uid', 'bid'])
             } else {
                 orderData = await Order.find({adress: adress}).skip((pagenum-1)*pagesize).limit(parseInt(pagesize)).populate(['uid', 'bid'])
             }
+            console.log(count)
             if (orderData) {
                 return res.json({
                     'data': orderData,

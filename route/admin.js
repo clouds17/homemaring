@@ -49,7 +49,8 @@ admin.delete('/deleteBabySitter/:id', passport.authenticate('jwt', { session: fa
 // 获取所有订单信息
 admin.get('/orders/:adress', passport.authenticate('jwt', { session: false }), require('./admin/orders/orders'))
 
-
+// 添加文章
+admin.post('/addIntroduce', passport.authenticate('jwt', { session: false }), require('./admin/introduce/addIntroduce'))
 
 
 

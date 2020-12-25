@@ -16,7 +16,8 @@ module.exports = async (req, res) => {
             price: parseInt(req.body.price),
             age: parseInt(req.body.age),
             entryTime: req.body.entryTime,
-            avator: req.body.avator
+            avator: req.body.avator,
+            isArticle: false
         }
         console.log(data)
         const babyData = await Babysitter.create(data)

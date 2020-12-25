@@ -42,7 +42,8 @@ const babysitterSchema = new mongoose.Schema({
     price: Number,
     // 入职时间
     entryTime: Date,
-    age: Number
+    age: Number,
+    isArticle: Boolean
 })
 
 const Babysitter = mongoose.model('Babysitter', babysitterSchema)

@@ -12,7 +12,7 @@ const introduceSchema = new mongoose.Schema({
     },
     pics: String,
     content: String,
-    link: Number
+    link: String
 })
 
 const Introduce = mongoose.model('Introduce', introduceSchema)
