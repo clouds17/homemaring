@@ -18,12 +18,13 @@ const orderSchema = new mongoose.Schema({
         default: Date.now()
     },
     // 预约时间
-    appTime: Date,
+    appTime: String,
     // 备注
     description: String,
     // 0 未完成
     // 1 已完成
-    state: Number
+    state: Number,
+    adress: Number
 })
 
 const Order = mongoose.model('Order', orderSchema)

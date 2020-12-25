@@ -18,7 +18,7 @@ home.get('/renderAll', require('./home/render/renderAll'))
 // // 获取单个保姆信息
 home.get('/renderOne/:id', require('./home/render/renderOne'))
 // // 添加到购物车页面
-home.post('/order', passport.authenticate('jwt', { session: false }), require('./home/order/gworder'))
+home.post('/order', require('./home/orders/gworder'))
 
 // 测试
 home.get('/ceshi', (req, res) => {

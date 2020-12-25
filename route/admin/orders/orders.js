@@ -1,11 +1,9 @@
-const { Babysitter } = require('../../../model/babysitter')
-const { baseUrl } = require('../../../config/baseurl')
-
+const e = require('express')
+const { Order } = require('../../../model/order')
 module.exports = async (req, res) => {
-    console.log(baseUrl)
     const { adress } = req.params
-    const { query, pagenum, pagesize } = req.query
-    if (!pagesize || pagesize <= 0) {
+    const { query, pagesize, pagenum } = req.query
+    if (!pagenum || pagenum <= 0) {
         return res.json({
             'data': null,
             'meta': {
@@ -23,29 +21,29 @@ module.exports = async (req, res) => {
             }
         })
     }
-    const queryReg = new RegExp(query, 'i')
-    await Babysitter.countDocuments({adress: adress}, async (err, count) => {
+    await Order.countDocuments({adress: adress}, async (err, count) => {
         if (err) {
             return res.json({
                 'data': null,
                 'meta': {
                     'status': 400,
-                    'message': '获取用户信息失败'
+                    'message': '获取订单信息失败'
                 }
             })
         } else {
-            const babysitterData = await Babysitter.find({adress: adress, username: { $regex: queryReg }}).skip((pagenum-1)*pagesize).limit(parseInt(pagesize))
-            if (babysitterData) {
-                babysitterData.forEach(item => {
-                    item.password = '',
-                    item.avator = baseUrl + item.avator
-                })
+            let orderData
+            if (query !== '') {
+                orderData = await Order.find({_id: query}).populate(['uid', 'bid'])
+            } else {
+                orderData = await Order.find({adress: adress}).skip((pagenum-1)*pagesize).limit(parseInt(pagesize)).populate(['uid', 'bid'])
+            }
+            if (orderData) {
                 return res.json({
+                    'data': orderData,
                     'total': count,
-                    'data': babysitterData,
                     'meta': {
                         'status': 200,
-                        'message': '获取用户信息成功'
+                        'message': '获取订单信息成功'
                     }
                 })
             } else {
@@ -53,7 +51,7 @@ module.exports = async (req, res) => {
                     'data': null,
                     'meta': {
                         'status': 400,
-                        'message': '获取用户信息失败'
+                        'message': '获取订单信息失败'
                     }
                 })
             }
