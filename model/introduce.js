@@ -12,9 +12,16 @@ const introduceSchema = new mongoose.Schema({
     },
     pics: String,
     content: String,
-    link: String
+    like: Number,
+    adress: Number,
+    // 工作技能
+    workingSkill: String,
+    // 语言技能
+    languageSkill: String,
+    // 证书
+    certificate: String
 })
-
+ 
 const Introduce = mongoose.model('Introduce', introduceSchema)
 
 module.exports = {

@@ -50,12 +50,16 @@ admin.delete('/deleteBabySitter/:id', passport.authenticate('jwt', { session: fa
 admin.get('/orders/:adress', passport.authenticate('jwt', { session: false }), require('./admin/orders/orders'))
 
 // 添加文章
-admin.post('/addIntroduce', passport.authenticate('jwt', { session: false }), require('./admin/introduce/addIntroduce'))
+admin.post('/addIntroduce/:adress', passport.authenticate('jwt', { session: false }), require('./admin/introduce/addIntroduce'))
 
+// 获取所有文章
+admin.get('/allIntroduce/:adress', passport.authenticate('jwt', { session: false }), require('./admin/introduce/allIntroduce'))
 
+// 删除文章
+admin.delete('/deleteIntroduce/:id/:bid', passport.authenticate('jwt', { session: false }), require('./admin/introduce/deleteIntroduce'))
 
-
-
+// 修改文章
+admin.put('/modifyIntroduce/:id', passport.authenticate('jwt', { session: false }), require('./admin/introduce/modifyIntroduce'))
 
 // 测试
 admin.get('/ceshi', require('./admin/ceshi'))
